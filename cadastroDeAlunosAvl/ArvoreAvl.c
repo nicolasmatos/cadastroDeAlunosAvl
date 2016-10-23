@@ -19,6 +19,7 @@ struct aluno {
 };
 
 struct no {
+	int fb;
 	No * pai;
 	No * esq;
 	No * dir;
@@ -40,7 +41,8 @@ void pre_ordem(No * raiz) {
 		printf("%d | ", raiz->aluno->matricula);
 		printf("%s | ", raiz->aluno->nome);
 		printf("%s | ", raiz->aluno->email);
-		printf("%s \n\n", raiz->aluno->telefone);
+		printf("%s |", raiz->aluno->telefone);
+		printf("%d \n\n", raiz->fb);
 		pre_ordem(raiz->esq);
 		pre_ordem(raiz->dir);
 	}
@@ -52,7 +54,8 @@ void in_ordem(No * raiz) {
 		printf("%d | ", raiz->aluno->matricula);
 		printf("%s | ", raiz->aluno->nome);
 		printf("%s | ", raiz->aluno->email);
-		printf("%s \n\n", raiz->aluno->telefone);
+		printf("%s |", raiz->aluno->telefone);
+		printf("%d \n\n", raiz->fb);
 		in_ordem(raiz->dir);
 	}
 }
@@ -91,19 +94,81 @@ int buscar_maior(Arvore * a) {
 	return a->raiz != NULL ? buscar_maior_rec(a->raiz) : 0;
 }
 
-void inserir_rec(No * * pRaiz, Aluno * aluno) {
+int atualizar_fb_rec(No * raiz) {
+	if (raiz != NULL) {
+		int ae = atualizar_fb_rec(raiz->esq);
+		int ad = atualizar_fb_rec(raiz->dir);
+		int fb = ad - ae;
+		raiz->fb = fb;
+		return ae > ad ? ae + 1 : ad + 1;
+	}
+	return -1;
+}
+
+void atualizar_fb(Arvore * a) {
+	atualizar_fb_rec(a->raiz);
+}
+
+No * rotacionar_esq(No * raiz) {
+	No * aux = raiz->dir;
+	raiz->dir = aux->esq;
+	aux->esq = raiz;
+	return aux;
+}
+
+No * rotacionar_dir(No * raiz) {
+	No * aux = raiz->esq;
+	raiz->esq = aux->dir;
+	aux->dir = raiz;
+	return aux;
+}
+
+int inserir_rec(Arvore * a, No * * pRaiz, Aluno * aluno) {
 	No* raiz = *pRaiz;
 	if (raiz != NULL) {
-		if (aluno->matricula < raiz->aluno->matricula) inserir_rec(&raiz->esq, aluno);
-		if (aluno->matricula > raiz->aluno->matricula) inserir_rec(&raiz->dir, aluno);
+		if (aluno->matricula < raiz->aluno->matricula) {
+			int fb_c = inserir_rec(a, &raiz->esq, aluno);
+			raiz->fb = raiz->fb - 1;
+			if (raiz->fb == -2) {
+				if (fb_c == 1) {
+					//rotacao dupla esquerda direita
+					//rotacao esquerda
+					raiz->esq = rotacionar_esq(raiz->esq);
+				}
+				//rotacao direita
+				raiz = rotacionar_dir(raiz);
+				*pRaiz = raiz;
+				atualizar_fb(a);
+			}
+			return raiz->fb;
+		}
+		if (aluno->matricula > raiz->aluno->matricula) {
+			int fb_c = inserir_rec(a, &raiz->dir, aluno);
+			raiz->fb = raiz->fb + 1;
+			if (raiz->fb == 2) {
+				if (fb_c == -1) {
+					//rotacao dupla direita esquerda
+					//rotacao direita
+					raiz->dir = rotacionar_dir(raiz->dir);
+				}
+				//rotacao esquerda
+				raiz = rotacionar_esq(raiz);
+				*pRaiz = raiz;
+				atualizar_fb(a);
+			}
+			return raiz->fb;
+		}
 	}
 	else {
 		raiz = (No *)malloc(sizeof(No));
 		raiz->aluno = aluno;
 		raiz->esq = NULL;
 		raiz->dir = NULL;
+		raiz->fb = 0;
 
 		*pRaiz = raiz;
+
+		return raiz->fb;
 	}
 }
 
@@ -114,7 +179,7 @@ void inserir(Arvore * a, int matricula, char nome[], char email[], char telefone
 	strcpy(aluno->email, email);
 	strcpy(aluno->telefone, telefone);
 
-	inserir_rec(&a->raiz, aluno);
+	inserir_rec(a, &a->raiz, aluno);
 }
 
 void imprimirAluno(Aluno * a) {
@@ -237,23 +302,67 @@ int remover_maior_rec(No * * pRaiz) {
 	return info;
 }
 
-int remover_menor_rec(No * * pRaiz) {
+int remover_menor_rec(No * * pRaiz, No * * pAnt) {
 	No * raiz = *pRaiz;
+	No * ant = NULL;
 	if (raiz->esq != NULL) {
-		return remover_menor_rec(&raiz->esq);
+		return remover_menor_rec(&raiz->esq, &raiz);
 	}
-	*pRaiz = raiz->dir;
+	if (ant != NULL) {
+		ant->fb = ant->fb + 1;
+
+		if (ant->fb == 2) {
+			if (ant->dir->fb == -1) {
+				//rotacao dupla direita esquerda
+				//rotacao direita
+				ant->dir = rotacionar_dir(ant->dir);
+			}
+			//rotacao esquerda
+			ant = rotacionar_esq(ant);
+			*pAnt = ant;
+		}
+	}
+
+	*pRaiz = ant;
 	int info = raiz->aluno->matricula;
 	free(raiz->aluno);
 	free(raiz);
 	return info;
 }
 
-void remover_rec(No * * pRaiz, int matricula) {
+int remover_rec(No * * pRaiz, int matricula) {
 	No * raiz = *pRaiz;
 	if (raiz != NULL) {
-		if (matricula < raiz->aluno->matricula) remover_rec(&raiz->esq, matricula);
-		else if (matricula > raiz->aluno->matricula) remover_rec(&raiz->dir, matricula);
+		if (matricula < raiz->aluno->matricula) {
+			int fb_c = remover_rec(&raiz->esq, matricula);
+			raiz->fb = raiz->fb + 1;
+			if (raiz->fb == 2) {
+				if (fb_c == -1) {
+					//rotacao dupla esquerda direita
+					//rotacao esquerda
+					raiz->esq = rotacionar_esq(raiz->esq);
+				}
+				//rotacao direita
+				raiz = rotacionar_dir(raiz);
+				*pRaiz = raiz;
+			}
+			return raiz->fb;
+		}
+		else if (matricula > raiz->aluno->matricula) {
+			int fb_c =	remover_rec(&raiz->dir, matricula);
+			raiz->fb = raiz->fb - 1;
+			if (raiz->fb == -2) {
+				if (fb_c == 1) {
+					//rotacao dupla direita esquerda
+					//rotacao direita
+					raiz->dir = rotacionar_dir(raiz->dir);
+				}
+				//rotacao esquerda
+				raiz = rotacionar_esq(raiz);
+				*pRaiz = raiz;
+			}
+			return raiz->fb;
+		}
 		else {
 			//Folha
 			if (raiz->esq == NULL && raiz->dir == NULL) {
@@ -265,19 +374,22 @@ void remover_rec(No * * pRaiz, int matricula) {
 				//Dois filhos
 				if (raiz->esq != NULL && raiz->dir != NULL) {
 					raiz->aluno->matricula = //remover_maior_rec(&raiz->esq);
-						remover_menor_rec(&raiz->dir);
+						remover_menor_rec(&raiz->dir, NULL);
 				}
 				else {//Um filho
 					if (raiz->esq != NULL) {
+						raiz->dir->fb = raiz->dir->fb - 1;
 						*pRaiz = raiz->esq;
 					}
 					else {
+						raiz->dir->fb = raiz->dir->fb + 1;
 						*pRaiz = raiz->dir;
 					}
 					free(raiz->aluno);
 					free(raiz);
 				}
 			}
+			return raiz->fb;
 		}
 	}
 }
@@ -286,6 +398,7 @@ int remover(Arvore * a, int matricula) {
 	Aluno * aluno = buscar_rec(a->raiz, matricula);
 	if (aluno != NULL) {
 		remover_rec(&a->raiz, matricula);
+		imprimirPre(a);
 		return 1;
 	}
 	return 0;
@@ -328,4 +441,21 @@ void salvar_em_arquivo(Arvore * a, char arquivo[]) {
 
 int esta_vazia(Arvore * a) {
 	return a->raiz == NULL ? 1 : 0;
+}
+
+int checar_no_avl_rec(No * raiz) {
+	if (raiz != NULL) {
+		int ae = checar_no_avl_rec(raiz->esq);
+		int ad = checar_no_avl_rec(raiz->dir);
+		int fb = ad - ae;
+		if ((fb < -1) || (fb > 1)) {
+			printf("%d ", raiz->aluno->matricula);
+		}
+		return ae > ad ? ae + 1 : ad + 1;
+	}
+	return -1;
+}
+
+void checar_no_avl(Arvore * a) {
+	checar_no_avl_rec(a->raiz);
 }

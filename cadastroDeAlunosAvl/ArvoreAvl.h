@@ -18,3 +18,6 @@ int editarAluno(Arvore * a, int matricula);
 void remover_todos(Arvore * a);
 void salvar_em_arquivo(Arvore * a, char arquivo[]);
 int esta_vazia(Arvore * a);
+
+void checar_no_avl(Arvore * a);
+void atualizar_fb(Arvore * a);

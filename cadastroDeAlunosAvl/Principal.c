@@ -5,16 +5,16 @@
 #include "ArvoreAvl.h"
 
 /*
-1.	Carregar os alunos para memÛria a partir da base de dados.
-2.	Inserir um novo aluno na memÛria a partir de nome, email e telefone fornecidos. O valor da nova matrÌcula deve ser gerado automaticamente, sendo sempre a maior matrÌcula na base de dados mais 1.
-3.	Listar os dados de todos os alunos por ordem de matrÌcula.
-4.	Listar os dados de todos os alunos cujas matrÌculas est„o contidas em um arquivo (ver anexos).
-5.	Consultar dados do aluno a partir da matrÌcula fornecida.
-6.	Alterar os dados de nome, email e telefone a partir da matrÌcula fornecida.
-7.	Remover um aluno a partir da matrÌcula fornecida.
-8.	Remover os dados de todos os alunos cujas matrÌculas est„o contidas em um arquivo (ver anexos).
+1.	Carregar os alunos para mem√≥ria a partir da base de dados.
+2.	Inserir um novo aluno na mem√≥ria a partir de nome, email e telefone fornecidos. O valor da nova matr√≠cula deve ser gerado automaticamente, sendo sempre a maior matr√≠cula na base de dados mais 1.
+3.	Listar os dados de todos os alunos por ordem de matr√≠cula.
+4.	Listar os dados de todos os alunos cujas matr√≠culas est√£o contidas em um arquivo (ver anexos).
+5.	Consultar dados do aluno a partir da matr√≠cula fornecida.
+6.	Alterar os dados de nome, email e telefone a partir da matr√≠cula fornecida.
+7.	Remover um aluno a partir da matr√≠cula fornecida.
+8.	Remover os dados de todos os alunos cujas matr√≠culas est√£o contidas em um arquivo (ver anexos).
 9.	Remover todos os alunos.
-10.	Salvar os alunos na base de dados a partir da memÛria, refletindo qualquer inclus„o, exclus„o ou alteraÁ„o feita atravÈs do programa.
+10.	Salvar os alunos na base de dados a partir da mem√≥ria, refletindo qualquer inclus√£o, exclus√£o ou altera√ß√£o feita atrav√©s do programa.
 */
 
 void carregaAlunos(Arvore * a, FILE * fp) {
@@ -70,14 +70,9 @@ void carregaAlunos(Arvore * a, FILE * fp) {
 
 		mat = atoi(matricula);
 
-		/*
-		printf("\nMatricula: %d\n", mat);
-		printf("\nNome: %s\n", nome);
-		printf("\nEmail: %s\n", email);
-		printf("\nTelefone: %s\n", telefone);
-		*/
-
 		inserir(a, mat, nome, email, telefone);
+
+		atualizar_fb(a);
 
 		c = fgetc(fp);
 	}
@@ -230,6 +225,7 @@ int main() {
 
 			chamaArquivo(a, arquivoCarregado);
 			imprimirPre(a);
+			checar_no_avl(a);
 		}
 		if (opcao == 2) {
 			system("cls");
