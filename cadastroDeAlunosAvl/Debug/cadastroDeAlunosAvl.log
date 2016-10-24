@@ -1,16 +1,13 @@
-﻿  Principal.c
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(186): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(187): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(188): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(189): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(190): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(191): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(192): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(193): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(194): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(195): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(196): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(207): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(208): warning C4129: '.': unrecognized character escape sequence
-  cadastroDeAlunosAvl.vcxproj -> C:\Dev\Visual Studio\Projects\cadastroDeAlunosAvl\Debug\cadastroDeAlunosAvl.exe
-  cadastroDeAlunosAvl.vcxproj -> C:\Dev\Visual Studio\Projects\cadastroDeAlunosAvl\Debug\cadastroDeAlunosAvl.pdb (Partial PDB)
+﻿  ArvoreAvl.c
+c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(113): warning C4047: '=': 'int' differs in levels of indirection from 'No *'
+c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(114): warning C4047: '=': 'int' differs in levels of indirection from 'No *'
+c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(220): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(221): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(222): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(223): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(224): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(398): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
+c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(398): warning C4047: ':': 'int' differs in levels of indirection from 'void *'
+c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(401): warning C4715: 'remover_rec': not all control paths return a value
+  cadastroDeAlunosAvl.vcxproj -> C:\Dev\Visual Studio\cadastroDeAlunosAvl\Debug\cadastroDeAlunosAvl.exe
+  cadastroDeAlunosAvl.vcxproj -> C:\Dev\Visual Studio\cadastroDeAlunosAvl\Debug\cadastroDeAlunosAvl.pdb (Partial PDB)

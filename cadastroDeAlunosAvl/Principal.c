@@ -230,8 +230,8 @@ int main() {
 			chamaArquivo(a, arquivoCarregado);
 			tempoFinal = clock();
 
-			tempoGasto = (tempoFinal - tempoInicial) * 1000 / CLOCKS_PER_SEC;
-			printf("Alunos carregados em: %f\n\n", tempoGasto);
+			tempoGasto = (tempoFinal - tempoInicial) / CLOCKS_PER_SEC;
+			printf("Alunos carregados em: %fs\n\n", tempoGasto);
 		}
 		if (opcao == 2) {
 			system("cls");
@@ -275,7 +275,7 @@ int main() {
 			tempoFinal = clock();
 
 			tempoGasto = (tempoFinal - tempoInicial) / CLOCKS_PER_SEC;
-			printf("Alunos listados em: %f\n\n", tempoGasto);
+			printf("Alunos listados em: %fs\n\n", tempoGasto);
 		}
 		if (opcao == 4) {
 			system("cls");
@@ -297,7 +297,7 @@ int main() {
 			tempoFinal = clock();
 
 			tempoGasto = (tempoFinal - tempoInicial) / CLOCKS_PER_SEC;
-			printf("Alunos listados em: %f\n\n", tempoGasto);
+			printf("Alunos listados em: %fs\n\n", tempoGasto);
 		}
 		if (opcao == 5) {
 			system("cls");
@@ -358,7 +358,7 @@ int main() {
 			tempoFinal = clock();
 
 			tempoGasto = (tempoFinal - tempoInicial) / CLOCKS_PER_SEC;
-			printf("Alunos listados em: %f\n\n", tempoGasto);
+			printf("Alunos listados em: %fs\n\n", tempoGasto);
 		}
 		if (opcao == 9) {
 			system("cls");
@@ -374,7 +374,7 @@ int main() {
 			tempoFinal = clock();
 
 			tempoGasto = (tempoFinal - tempoInicial) / CLOCKS_PER_SEC;
-			printf("Alunos listados em: %f\n\n", tempoGasto);
+			printf("Alunos listados em: %fs\n\n", tempoGasto);
 		}
 		if (opcao == 10) {
 			system("cls");

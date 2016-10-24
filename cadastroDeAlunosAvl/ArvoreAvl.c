@@ -109,16 +109,22 @@ void atualizar_fb(Arvore * a) {
 	atualizar_fb_rec(a->raiz);
 }
 
+void atualizar_fb_no(No * raiz) {
+	if (raiz->dir == NULL && raiz->esq != NULL) raiz->fb = raiz->esq - 1;
+	else if (raiz->esq == NULL && raiz->dir != NULL) raiz->fb = raiz->dir + 1;
+	else if (raiz->esq != NULL && raiz->dir != NULL) raiz->fb = raiz->dir->fb - raiz->esq->fb;
+}
+
 No * rotacionar_esq(No * raiz) {
 	No * aux = raiz->dir;
-	raiz->dir = aux->esq;
+	raiz->dir = aux->esq != NULL ? aux->esq : NULL;
 	aux->esq = raiz;
 	return aux;
 }
 
 No * rotacionar_dir(No * raiz) {
 	No * aux = raiz->esq;
-	raiz->esq = aux->dir;
+	raiz->esq = aux->dir != NULL ? aux->dir : NULL;
 	aux->dir = raiz;
 	return aux;
 }
@@ -128,7 +134,6 @@ int inserir_rec(Arvore * a, No * * pRaiz, Aluno * aluno) {
 	if (raiz != NULL) {
 		if (aluno->matricula < raiz->aluno->matricula) {
 			int fb_c = inserir_rec(a, &raiz->esq, aluno);
-			raiz->fb = raiz->fb - 1;
 			if (raiz->fb == -2) {
 				if (fb_c == 1) {
 					//rotacao dupla esquerda direita
@@ -138,13 +143,10 @@ int inserir_rec(Arvore * a, No * * pRaiz, Aluno * aluno) {
 				//rotacao direita
 				raiz = rotacionar_dir(raiz);
 				*pRaiz = raiz;
-				atualizar_fb(a);
 			}
-			return raiz->fb;
 		}
 		if (aluno->matricula > raiz->aluno->matricula) {
 			int fb_c = inserir_rec(a, &raiz->dir, aluno);
-			raiz->fb = raiz->fb + 1;
 			if (raiz->fb == 2) {
 				if (fb_c == -1) {
 					//rotacao dupla direita esquerda
@@ -154,10 +156,12 @@ int inserir_rec(Arvore * a, No * * pRaiz, Aluno * aluno) {
 				//rotacao esquerda
 				raiz = rotacionar_esq(raiz);
 				*pRaiz = raiz;
-				atualizar_fb(a);
 			}
-			return raiz->fb;
 		}
+
+		atualizar_fb(a);
+		return raiz->fb;
+
 	}
 	else {
 		raiz = (No *)malloc(sizeof(No));
@@ -304,7 +308,7 @@ int remover_maior_rec(No * * pRaiz) {
 
 int remover_menor_rec(No * * pRaiz, No * * pAnt) {
 	No * raiz = *pRaiz;
-	No * ant = NULL;
+	No * ant = *pAnt;
 	if (raiz->esq != NULL) {
 		return remover_menor_rec(&raiz->esq, &raiz);
 	}
@@ -321,21 +325,21 @@ int remover_menor_rec(No * * pRaiz, No * * pAnt) {
 			ant = rotacionar_esq(ant);
 			*pAnt = ant;
 		}
+		*pRaiz = raiz->dir;
 	}
 
-	*pRaiz = ant;
+	//*pRaiz = ant;
 	int info = raiz->aluno->matricula;
 	free(raiz->aluno);
 	free(raiz);
 	return info;
 }
 
-int remover_rec(No * * pRaiz, int matricula) {
+int remover_rec(Arvore * a, No * * pRaiz, int matricula) {
 	No * raiz = *pRaiz;
 	if (raiz != NULL) {
 		if (matricula < raiz->aluno->matricula) {
-			int fb_c = remover_rec(&raiz->esq, matricula);
-			raiz->fb = raiz->fb + 1;
+			int fb_c = remover_rec(a, &raiz->esq, matricula);
 			if (raiz->fb == 2) {
 				if (fb_c == -1) {
 					//rotacao dupla esquerda direita
@@ -345,11 +349,12 @@ int remover_rec(No * * pRaiz, int matricula) {
 				//rotacao direita
 				raiz = rotacionar_dir(raiz);
 				*pRaiz = raiz;
+				atualizar_fb(a);
+				return raiz->fb;
 			}
-			return raiz->fb;
 		}
 		else if (matricula > raiz->aluno->matricula) {
-			int fb_c =	remover_rec(&raiz->dir, matricula);
+			int fb_c =	remover_rec(a, &raiz->dir, matricula);
 			raiz->fb = raiz->fb - 1;
 			if (raiz->fb == -2) {
 				if (fb_c == 1) {
@@ -360,8 +365,9 @@ int remover_rec(No * * pRaiz, int matricula) {
 				//rotacao esquerda
 				raiz = rotacionar_esq(raiz);
 				*pRaiz = raiz;
+				atualizar_fb(a);
+				return raiz->fb;
 			}
-			return raiz->fb;
 		}
 		else {
 			//Folha
@@ -374,7 +380,7 @@ int remover_rec(No * * pRaiz, int matricula) {
 				//Dois filhos
 				if (raiz->esq != NULL && raiz->dir != NULL) {
 					raiz->aluno->matricula = //remover_maior_rec(&raiz->esq);
-						remover_menor_rec(&raiz->dir, NULL);
+						remover_menor_rec(&raiz->dir, &raiz->dir);
 				}
 				else {//Um filho
 					if (raiz->esq != NULL) {
@@ -389,7 +395,7 @@ int remover_rec(No * * pRaiz, int matricula) {
 					free(raiz);
 				}
 			}
-			return raiz->fb;
+			return raiz->fb != NULL ? raiz->fb : NULL;
 		}
 	}
 }
@@ -397,8 +403,7 @@ int remover_rec(No * * pRaiz, int matricula) {
 int remover(Arvore * a, int matricula) {
 	Aluno * aluno = buscar_rec(a->raiz, matricula);
 	if (aluno != NULL) {
-		remover_rec(&a->raiz, matricula);
-		imprimirPre(a);
+		remover_rec(a, &a->raiz, matricula);
 		return 1;
 	}
 	return 0;
