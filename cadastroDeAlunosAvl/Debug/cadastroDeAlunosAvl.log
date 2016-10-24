@@ -1,10 +1,16 @@
-﻿  ArvoreAvl.c
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(216): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(217): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(218): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(219): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(220): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(173): warning C4715: 'inserir_rec': not all control paths return a value
-c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(395): warning C4715: 'remover_rec': not all control paths return a value
+﻿  Principal.c
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(186): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(187): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(188): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(189): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(190): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(191): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(192): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(193): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(194): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(195): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(196): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(207): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\principal.c(208): warning C4129: '.': unrecognized character escape sequence
   cadastroDeAlunosAvl.vcxproj -> C:\Dev\Visual Studio\Projects\cadastroDeAlunosAvl\Debug\cadastroDeAlunosAvl.exe
   cadastroDeAlunosAvl.vcxproj -> C:\Dev\Visual Studio\Projects\cadastroDeAlunosAvl\Debug\cadastroDeAlunosAvl.pdb (Partial PDB)

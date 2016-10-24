@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ArvoreAvl.h"
+#include "time.h"
 
 /*
 1.	Carregar os alunos para memória a partir da base de dados.
@@ -191,7 +192,7 @@ int main() {
 			"7\. Remover um aluno por matricula\n"
 			"8\. Remover os dados de todos os alunos de um arquivo\n"
 			"9\. Remover todos os alunos\n"
-			"10\. Salvar os alunos \n"
+			"10\. Salvar os alunos\n"
 			"11\. Sair do programa\n");
 		printf("===============================================================================\n");
 		printf("\nQual opcao do menu deseja executar?\n");
@@ -223,9 +224,14 @@ int main() {
 			scanf("%s", arquivoCarregado);
 			fflush(stdin);
 
+			clock_t tempoInicial, tempoFinal;
+			double tempoGasto;
+			tempoInicial = clock();
 			chamaArquivo(a, arquivoCarregado);
-			imprimirPre(a);
-			checar_no_avl(a);
+			tempoFinal = clock();
+
+			tempoGasto = (tempoFinal - tempoInicial) * 1000 / CLOCKS_PER_SEC;
+			printf("Alunos carregados em: %f\n\n", tempoGasto);
 		}
 		if (opcao == 2) {
 			system("cls");
@@ -262,7 +268,14 @@ int main() {
 				"| Listando por matricula |\n"
 				"|                        |\n"
 				"--------------------------\n");
+			clock_t tempoInicial, tempoFinal;
+			double tempoGasto;
+			tempoInicial = clock();
 			imprimirIn(a);
+			tempoFinal = clock();
+
+			tempoGasto = (tempoFinal - tempoInicial) / CLOCKS_PER_SEC;
+			printf("Alunos listados em: %f\n\n", tempoGasto);
 		}
 		if (opcao == 4) {
 			system("cls");
@@ -277,7 +290,14 @@ int main() {
 			scanf("%s", arquivo);
 			fflush(stdin);
 
+			clock_t tempoInicial, tempoFinal;
+			double tempoGasto;
+			tempoInicial = clock();
 			chamaArquivoC(a, arquivo);
+			tempoFinal = clock();
+
+			tempoGasto = (tempoFinal - tempoInicial) / CLOCKS_PER_SEC;
+			printf("Alunos listados em: %f\n\n", tempoGasto);
 		}
 		if (opcao == 5) {
 			system("cls");
@@ -331,7 +351,14 @@ int main() {
 			scanf("%s", arquivo);
 			fflush(stdin);
 
+			clock_t tempoInicial, tempoFinal;
+			double tempoGasto;
+			tempoInicial = clock();
 			chamaArquivoR(a, arquivo);
+			tempoFinal = clock();
+
+			tempoGasto = (tempoFinal - tempoInicial) / CLOCKS_PER_SEC;
+			printf("Alunos listados em: %f\n\n", tempoGasto);
 		}
 		if (opcao == 9) {
 			system("cls");
@@ -340,7 +367,14 @@ int main() {
 				"|    Removendo todos     |\n"
 				"|                        |\n"
 				"--------------------------\n");
+			clock_t tempoInicial, tempoFinal;
+			double tempoGasto;
+			tempoInicial = clock();
 			remover_todos(a);
+			tempoFinal = clock();
+
+			tempoGasto = (tempoFinal - tempoInicial) / CLOCKS_PER_SEC;
+			printf("Alunos listados em: %f\n\n", tempoGasto);
 		}
 		if (opcao == 10) {
 			system("cls");
