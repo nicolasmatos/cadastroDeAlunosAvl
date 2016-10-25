@@ -1,13 +1,36 @@
 ﻿  ArvoreAvl.c
-c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(113): warning C4047: '=': 'int' differs in levels of indirection from 'No *'
-c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(114): warning C4047: '=': 'int' differs in levels of indirection from 'No *'
-c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(220): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(221): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(222): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(223): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(224): warning C4129: '.': unrecognized character escape sequence
-c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(398): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
-c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(398): warning C4047: ':': 'int' differs in levels of indirection from 'void *'
-c:\dev\visual studio\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(401): warning C4715: 'remover_rec': not all control paths return a value
-  cadastroDeAlunosAvl.vcxproj -> C:\Dev\Visual Studio\cadastroDeAlunosAvl\Debug\cadastroDeAlunosAvl.exe
-  cadastroDeAlunosAvl.vcxproj -> C:\Dev\Visual Studio\cadastroDeAlunosAvl\Debug\cadastroDeAlunosAvl.pdb (Partial PDB)
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(41): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type '__int64'
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(41): note: consider using '%lld' in the format string
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(41): note: consider using '%I64d' in the format string
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(54): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type '__int64'
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(54): note: consider using '%lld' in the format string
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(54): note: consider using '%I64d' in the format string
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(67): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type '__int64'
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(67): note: consider using '%lld' in the format string
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(67): note: consider using '%I64d' in the format string
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(90): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(115): warning C4047: '=': 'int' differs in levels of indirection from 'No *'
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(120): warning C4047: '=': 'int' differs in levels of indirection from 'No *'
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(205): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type '__int64'
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(205): note: consider using '%lld' in the format string
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(205): note: consider using '%I64d' in the format string
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(235): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(236): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(237): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(238): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(239): warning C4129: '.': unrecognized character escape sequence
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(318): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(354): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(418): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(418): warning C4047: ':': 'int' differs in levels of indirection from 'void *'
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(436): warning C4244: 'function': conversion from '__int64' to 'int', possible loss of data
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(446): warning C4477: 'fprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type '__int64'
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(446): note: consider using '%lld' in the format string
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(446): note: consider using '%I64d' in the format string
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(477): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type '__int64'
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(477): note: consider using '%lld' in the format string
+  c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(477): note: consider using '%I64d' in the format string
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(131): warning C4716: 'atualizar_fb_no': must return a value
+c:\dev\visual studio\projects\cadastrodealunosavl\cadastrodealunosavl\arvoreavl.c(421): warning C4715: 'remover_rec': not all control paths return a value
+  cadastroDeAlunosAvl.vcxproj -> C:\Dev\Visual Studio\Projects\cadastroDeAlunosAvl\Debug\cadastroDeAlunosAvl.exe
+  cadastroDeAlunosAvl.vcxproj -> C:\Dev\Visual Studio\Projects\cadastroDeAlunosAvl\Debug\cadastroDeAlunosAvl.pdb (Partial PDB)

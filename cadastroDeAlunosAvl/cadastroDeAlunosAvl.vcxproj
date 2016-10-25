@@ -114,9 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArvoreAvl.c" />
-    <ClCompile Include="ArvoreAvlIterativa.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Principal.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

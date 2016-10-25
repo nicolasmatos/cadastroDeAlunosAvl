@@ -18,9 +18,6 @@
     <ClCompile Include="ArvoreAvl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ArvoreAvlIterativa.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Principal.c">
       <Filter>Source Files</Filter>
     </ClCompile>

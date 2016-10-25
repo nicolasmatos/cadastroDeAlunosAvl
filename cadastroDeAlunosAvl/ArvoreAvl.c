@@ -12,7 +12,7 @@ struct arvore {
 };
 
 struct aluno {
-	int matricula;
+	long long int matricula;
 	char nome[50];
 	char email[50];
 	char telefone[50];
@@ -109,10 +109,25 @@ void atualizar_fb(Arvore * a) {
 	atualizar_fb_rec(a->raiz);
 }
 
-void atualizar_fb_no(No * raiz) {
-	if (raiz->dir == NULL && raiz->esq != NULL) raiz->fb = raiz->esq - 1;
-	else if (raiz->esq == NULL && raiz->dir != NULL) raiz->fb = raiz->dir + 1;
-	else if (raiz->esq != NULL && raiz->dir != NULL) raiz->fb = raiz->dir->fb - raiz->esq->fb;
+int atualizar_fb_no(No * raiz) {
+	if (raiz != NULL) {
+		if (raiz->dir == NULL && raiz->esq != NULL) {
+			raiz->fb = raiz->esq - 1;
+			atualizar_fb_no(raiz->esq);
+			atualizar_fb_no(raiz->dir);
+		}
+		else if (raiz->esq == NULL && raiz->dir != NULL) {
+			raiz->fb = raiz->dir + 1;
+			atualizar_fb_no(raiz->esq);
+			atualizar_fb_no(raiz->dir);
+		}
+		else if (raiz->esq != NULL && raiz->dir != NULL) {
+			raiz->fb = raiz->dir->fb - raiz->esq->fb;
+			atualizar_fb_no(raiz->esq);
+			atualizar_fb_no(raiz->dir);
+		}
+	}
+	
 }
 
 No * rotacionar_esq(No * raiz) {
@@ -306,14 +321,15 @@ int remover_maior_rec(No * * pRaiz) {
 	return info;
 }
 
-int remover_menor_rec(No * * pRaiz, No * * pAnt) {
+int remover_menor_rec(Arvore * a, No * * pRaiz, No * * pAnt, int c, No * * ref) {
 	No * raiz = *pRaiz;
 	No * ant = *pAnt;
 	if (raiz->esq != NULL) {
-		return remover_menor_rec(&raiz->esq, &raiz);
+		return c == 1 ? remover_menor_rec(a, &raiz->esq, &raiz, 2, pRaiz) : remover_menor_rec(a, &raiz->esq, &raiz, 0, NULL);
 	}
 	if (ant != NULL) {
-		ant->fb = ant->fb + 1;
+		*pRaiz = raiz->dir;
+		atualizar_fb(a);
 
 		if (ant->fb == 2) {
 			if (ant->dir->fb == -1) {
@@ -323,12 +339,18 @@ int remover_menor_rec(No * * pRaiz, No * * pAnt) {
 			}
 			//rotacao esquerda
 			ant = rotacionar_esq(ant);
-			*pAnt = ant;
+			
+			if (c == 2) {
+				*ref = ant;
+			}
+			else {
+				*pAnt = ant;
+			}
+
+			atualizar_fb(a);
 		}
-		*pRaiz = raiz->dir;
 	}
 
-	//*pRaiz = ant;
 	int info = raiz->aluno->matricula;
 	free(raiz->aluno);
 	free(raiz);
@@ -344,10 +366,10 @@ int remover_rec(Arvore * a, No * * pRaiz, int matricula) {
 				if (fb_c == -1) {
 					//rotacao dupla esquerda direita
 					//rotacao esquerda
-					raiz->esq = rotacionar_esq(raiz->esq);
+					raiz->esq = rotacionar_dir(raiz->esq);
 				}
 				//rotacao direita
-				raiz = rotacionar_dir(raiz);
+				raiz = rotacionar_esq(raiz);
 				*pRaiz = raiz;
 				atualizar_fb(a);
 				return raiz->fb;
@@ -360,10 +382,10 @@ int remover_rec(Arvore * a, No * * pRaiz, int matricula) {
 				if (fb_c == 1) {
 					//rotacao dupla direita esquerda
 					//rotacao direita
-					raiz->dir = rotacionar_dir(raiz->dir);
+					raiz->dir = rotacionar_esq(raiz->dir);
 				}
 				//rotacao esquerda
-				raiz = rotacionar_esq(raiz);
+				raiz = rotacionar_dir(raiz);
 				*pRaiz = raiz;
 				atualizar_fb(a);
 				return raiz->fb;
@@ -380,15 +402,13 @@ int remover_rec(Arvore * a, No * * pRaiz, int matricula) {
 				//Dois filhos
 				if (raiz->esq != NULL && raiz->dir != NULL) {
 					raiz->aluno->matricula = //remover_maior_rec(&raiz->esq);
-						remover_menor_rec(&raiz->dir, &raiz->dir);
+						remover_menor_rec(a, &raiz->dir, &raiz->dir, 1, NULL);
 				}
 				else {//Um filho
 					if (raiz->esq != NULL) {
-						raiz->dir->fb = raiz->dir->fb - 1;
 						*pRaiz = raiz->esq;
 					}
 					else {
-						raiz->dir->fb = raiz->dir->fb + 1;
 						*pRaiz = raiz->dir;
 					}
 					free(raiz->aluno);
